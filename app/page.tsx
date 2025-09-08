@@ -8,8 +8,8 @@ export default function Home() {
     }}>
       <h1>🏠 I am PAGE.TSX</h1>
       <p>I am ONLY the content inside the red box!</p>
-      <p>I don't have {'<html>'} or {'<body>'} tags</p>
-      <p>I'm just a piece of content that needs a wrapper!</p>
+      <p>I don&apos;t have {'<html>'} or {'<body>'} tags</p>
+      <p>I&apos;m just a piece of content that needs a wrapper!</p>
     </div>
   );
 }

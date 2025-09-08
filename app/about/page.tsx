@@ -7,8 +7,8 @@ export default function About() {
       backgroundColor: 'peachpuff' 
     }}>
       <h1>📖 I am ABOUT/PAGE.TSX</h1>
-      <p>I'm a different page!</p>
-      <p>But I'm ALSO wrapped by the same layout.tsx</p>
+      <p>I&apos;m a different page!</p>
+      <p>But I&apos;m ALSO wrapped by the same layout.tsx</p>
       <p>Visit me at: /about</p>
     </div>
   );
