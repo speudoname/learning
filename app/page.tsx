@@ -1,103 +1,129 @@
-import Image from "next/image";
+'use client';
+
+import { useEffect } from 'react';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  console.log("🏠 STEP 3: Home page component is rendering");
+  console.log("📍 Location: app/page.tsx");
+  console.log("🎯 Purpose: This is the content for the '/' route");
+  
+  useEffect(() => {
+    console.log("✅ STEP 4: Home page mounted in browser");
+    console.log("🌐 The page is now interactive!");
+  }, []);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="min-h-screen p-8 font-sans">
+      <main className="max-w-4xl mx-auto">
+        <h1 className="text-4xl font-bold mb-8">🎓 Learning Journey: How Next.js Works</h1>
+        
+        <div className="bg-blue-50 p-6 rounded-lg mb-8">
+          <h2 className="text-2xl font-semibold mb-4">📋 What happens when you visit this page?</h2>
+          
+          <ol className="space-y-4">
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600">1.</span>
+              <div>
+                <strong>Browser Request:</strong> You type learning-nine-rho.vercel.app
+                <div className="text-sm text-gray-600 mt-1">
+                  Your browser sends an HTTP request to Vercel's servers
+                </div>
+              </div>
+            </li>
+            
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600">2.</span>
+              <div>
+                <strong>Vercel Routing:</strong> Vercel receives the request
+                <div className="text-sm text-gray-600 mt-1">
+                  Vercel knows this domain points to your Next.js app
+                </div>
+              </div>
+            </li>
+            
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600">3.</span>
+              <div>
+                <strong>Next.js Server:</strong> Request reaches Next.js
+                <div className="text-sm text-gray-600 mt-1">
+                  Next.js looks at the URL path (/) and finds app/page.tsx
+                </div>
+              </div>
+            </li>
+            
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600">4.</span>
+              <div>
+                <strong>Layout Wrapping:</strong> app/layout.tsx wraps the page
+                <div className="text-sm text-gray-600 mt-1">
+                  Provides the HTML structure, fonts, and global styles
+                </div>
+              </div>
+            </li>
+            
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600">5.</span>
+              <div>
+                <strong>Page Rendering:</strong> app/page.tsx renders
+                <div className="text-sm text-gray-600 mt-1">
+                  This component becomes the {`<body>`} content
+                </div>
+              </div>
+            </li>
+            
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600">6.</span>
+              <div>
+                <strong>HTML Response:</strong> Server sends HTML to browser
+                <div className="text-sm text-gray-600 mt-1">
+                  Browser receives and displays the page
+                </div>
+              </div>
+            </li>
+            
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600">7.</span>
+              <div>
+                <strong>Hydration:</strong> React makes page interactive
+                <div className="text-sm text-gray-600 mt-1">
+                  JavaScript loads and React takes over for interactivity
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div className="bg-green-50 p-6 rounded-lg mb-8">
+          <h2 className="text-2xl font-semibold mb-4">📁 File Structure Explained</h2>
+          
+          <div className="space-y-3 font-mono text-sm">
+            <div className="p-3 bg-white rounded">
+              <strong>app/layout.tsx</strong> → Root layout (wraps ALL pages)
+            </div>
+            <div className="p-3 bg-white rounded">
+              <strong>app/page.tsx</strong> → Home page (/) content
+            </div>
+            <div className="p-3 bg-white rounded">
+              <strong>app/globals.css</strong> → Global styles (Tailwind CSS)
+            </div>
+            <div className="p-3 bg-white rounded">
+              <strong>public/</strong> → Static files (images, fonts)
+            </div>
+            <div className="p-3 bg-white rounded">
+              <strong>next.config.ts</strong> → Next.js configuration
+            </div>
+            <div className="p-3 bg-white rounded">
+              <strong>package.json</strong> → Dependencies and scripts
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-yellow-50 p-6 rounded-lg">
+          <h2 className="text-2xl font-semibold mb-4">🚀 Check the Console!</h2>
+          <p className="mb-2">Open your browser's Developer Tools (F12) and check the Console tab.</p>
+          <p className="text-sm text-gray-600">You'll see the logs showing the exact order of execution!</p>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }

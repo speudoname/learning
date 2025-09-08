@@ -22,6 +22,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log("🏗️ STEP 2: RootLayout is rendering (this wraps EVERY page)");
+  console.log("📍 Location: app/layout.tsx");
+  console.log("🎯 Purpose: Provides HTML structure for ALL pages");
+  
   return (
     <html lang="en">
       <body
