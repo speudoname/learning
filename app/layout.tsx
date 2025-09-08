@@ -22,16 +22,46 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log("🏗️ STEP 2: RootLayout is rendering (this wraps EVERY page)");
-  console.log("📍 Location: app/layout.tsx");
-  console.log("🎯 Purpose: Provides HTML structure for ALL pages");
-  
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{ 
+          border: '5px solid blue', 
+          padding: '10px',
+          backgroundColor: 'lightblue',
+          minHeight: '100vh'
+        }}
       >
-        {children}
+        <div style={{ 
+          backgroundColor: 'white', 
+          padding: '10px', 
+          marginBottom: '10px' 
+        }}>
+          <h2>📦 I am LAYOUT.TSX - The Wrapper!</h2>
+          <p>I provide the {'<html>'} and {'<body>'} tags</p>
+          <p>Everything in the blue border is ME</p>
+          <p>👇 Below this line is where {'{children}'} goes:</p>
+        </div>
+        
+        <div style={{ 
+          border: '3px dashed green', 
+          padding: '5px',
+          backgroundColor: 'lightgreen' 
+        }}>
+          <p style={{ margin: '0 0 10px 0' }}>↓ {'{children}'} START ↓</p>
+          {children}
+          <p style={{ margin: '10px 0 0 0' }}>↑ {'{children}'} END ↑</p>
+        </div>
+        
+        <div style={{ 
+          backgroundColor: 'white', 
+          padding: '10px', 
+          marginTop: '10px' 
+        }}>
+          <p>☝️ Everything above in the green dashed box is the PAGE content</p>
+          <p>I (layout.tsx) wrap EVERY page in your app!</p>
+        </div>
       </body>
     </html>
   );
