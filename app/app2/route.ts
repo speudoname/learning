@@ -1,52 +1,33 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
 const APP2_URL = process.env.APP2_URL || 'http://localhost:3002';
 
-async function handler(req: NextRequest) {
+export async function GET(req: NextRequest) {
   const targetUrl = `${APP2_URL}/app2${req.nextUrl.search}`;
-
-  try {
-    // Get headers from the main app
-    const headers = new Headers(req.headers);
-    
-    // Add proxy identification header
-    headers.set('x-proxied-from', 'learning-main');
-    
-    // Forward the request to app2
-    const response = await fetch(targetUrl, {
-      method: req.method,
-      headers: headers,
-      body: ['GET', 'HEAD'].includes(req.method) ? undefined : req.body,
-      // @ts-expect-error - duplex is needed for streaming
-      duplex: 'half',
-    });
-
-    // Get the response body
-    const body = await response.arrayBuffer();
-    
-    // Create response with the fetched data
-    const responseHeaders = new Headers(response.headers);
-    
-    // Remove Vercel-specific headers that might cause issues
-    responseHeaders.delete('x-vercel-id');
-    responseHeaders.delete('x-vercel-deployment-url');
-    
-    return new NextResponse(body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers: responseHeaders,
-    });
-  } catch (error) {
-    console.error('Proxy error:', error);
-    return NextResponse.json(
-      { error: 'Failed to proxy request' },
-      { status: 500 }
-    );
-  }
+  
+  // Simple fetch and return - let Next.js handle encoding
+  const response = await fetch(targetUrl, {
+    headers: {
+      'x-proxied-from': 'learning-main',
+      'cookie': req.headers.get('cookie') || '',
+    },
+  });
+  
+  return response;
 }
 
-export const GET = handler;
-export const POST = handler;
-export const PUT = handler;
-export const DELETE = handler;
-export const PATCH = handler;
+export async function POST(req: NextRequest) {
+  const targetUrl = `${APP2_URL}/app2${req.nextUrl.search}`;
+  
+  const response = await fetch(targetUrl, {
+    method: 'POST',
+    headers: {
+      'x-proxied-from': 'learning-main',
+      'cookie': req.headers.get('cookie') || '',
+      'content-type': req.headers.get('content-type') || '',
+    },
+    body: req.body,
+  });
+  
+  return response;
+}
