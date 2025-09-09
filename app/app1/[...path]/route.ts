@@ -21,7 +21,7 @@ async function handler(
       method: req.method,
       headers: headers,
       body: req.body,
-      // @ts-ignore
+      // @ts-expect-error - duplex is needed for streaming
       duplex: 'half',
     });
 
