@@ -25,8 +25,25 @@ const nextConfig: NextConfig = {
       ];
     }
     
-    // Production rewrites handled by vercel.json
-    return [];
+    // Production rewrites
+    return [
+      {
+        source: '/app1',
+        destination: 'https://learning-app1-2kuscihzg.vercel.app/app1',
+      },
+      {
+        source: '/app1/:path*',
+        destination: 'https://learning-app1-2kuscihzg.vercel.app/app1/:path*',
+      },
+      {
+        source: '/app2',
+        destination: 'https://app2-lcqge066f.vercel.app/app2',
+      },
+      {
+        source: '/app2/:path*',
+        destination: 'https://app2-lcqge066f.vercel.app/app2/:path*',
+      },
+    ];
   },
   async headers() {
     return [
@@ -35,7 +52,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'x-forwarded-host',
-            value: isDevelopment ? 'localhost:3000' : 'learning.vercel.app',
+            value: isDevelopment ? 'localhost:3000' : 'learning-mvj7wb3s6-levans-projects-84ff839c.vercel.app',
           },
           {
             key: 'x-forwarded-proto',
@@ -48,7 +65,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'x-forwarded-host',
-            value: isDevelopment ? 'localhost:3000' : 'learning.vercel.app',
+            value: isDevelopment ? 'localhost:3000' : 'learning-mvj7wb3s6-levans-projects-84ff839c.vercel.app',
           },
           {
             key: 'x-forwarded-proto',
