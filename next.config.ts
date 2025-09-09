@@ -3,8 +3,8 @@ import type { NextConfig } from "next";
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 // Use environment variables for production domains
-const APP1_DOMAIN = process.env.APP1_DOMAIN || 'https://learning-app1-2kuscihzg-levans-projects-84ff839c.vercel.app';
-const APP2_DOMAIN = process.env.APP2_DOMAIN || 'https://app2-lcqge066f-levans-projects-84ff839c.vercel.app';
+const APP1_DOMAIN = process.env.APP1_DOMAIN || 'https://learning-app1-h5bpntfbr-levans-projects-84ff839c.vercel.app';
+const APP2_DOMAIN = process.env.APP2_DOMAIN || 'https://app2-inxedw124-levans-projects-84ff839c.vercel.app';
 
 const nextConfig: NextConfig = {
   async rewrites() {
