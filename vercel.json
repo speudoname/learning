@@ -16,8 +16,5 @@
       "source": "/app2/:match*",
       "destination": "https://app2-inxedw124-levans-projects-84ff839c.vercel.app/app2/:match*"
     }
-  ],
-  "deploymentProtection": {
-    "enabled": false
-  }
+  ]
 }
