@@ -1,37 +1,63 @@
 import type { NextConfig } from "next";
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 const nextConfig: NextConfig = {
   async rewrites() {
+    if (isDevelopment) {
+      return [
+        {
+          source: '/app1',
+          destination: 'http://localhost:3001/app1',
+        },
+        {
+          source: '/app1/:path*',
+          destination: 'http://localhost:3001/app1/:path*',
+        },
+        {
+          source: '/app2',
+          destination: 'http://localhost:3002/app2',
+        },
+        {
+          source: '/app2/:path*',
+          destination: 'http://localhost:3002/app2/:path*',
+        },
+      ];
+    }
+    
+    // Production rewrites handled by vercel.json
+    return [];
+  },
+  async headers() {
     return [
       {
-        source: '/app1',
-        destination: 'https://learning-app1-7hercsz5v-levans-projects-84ff839c.vercel.app',
-      },
-      {
         source: '/app1/:path*',
-        destination: 'https://learning-app1-7hercsz5v-levans-projects-84ff839c.vercel.app/:path*',
-      },
-      {
-        source: '/app2',
-        destination: 'https://app2-51aupy55g-levans-projects-84ff839c.vercel.app',
+        headers: [
+          {
+            key: 'x-forwarded-host',
+            value: isDevelopment ? 'localhost:3000' : 'learning.vercel.app',
+          },
+          {
+            key: 'x-forwarded-proto',
+            value: isDevelopment ? 'http' : 'https',
+          },
+        ],
       },
       {
         source: '/app2/:path*',
-        destination: 'https://app2-51aupy55g-levans-projects-84ff839c.vercel.app/:path*',
+        headers: [
+          {
+            key: 'x-forwarded-host',
+            value: isDevelopment ? 'localhost:3000' : 'learning.vercel.app',
+          },
+          {
+            key: 'x-forwarded-proto',
+            value: isDevelopment ? 'http' : 'https',
+          },
+        ],
       },
     ];
   },
 };
 
 export default nextConfig;
-
-/* 
-How this works:
-1. User visits: learning.vercel.app/app1
-2. Next.js sees the /app1 path
-3. Proxies the request to the actual Vercel deployment URL
-4. Returns the response from app1
-5. User's browser still shows learning.vercel.app/app1
-
-Note: We need both rules - one for the base path and one for sub-paths
-*/
