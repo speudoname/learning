@@ -12,6 +12,9 @@ async function handler(req: NextRequest) {
     // Add proxy identification header
     headers.set('x-proxied-from', 'learning-main');
     
+    // Remove host header to avoid conflicts
+    headers.delete('host');
+    
     // Forward the request to app1
     const response = await fetch(targetUrl, {
       method: req.method,
@@ -21,8 +24,15 @@ async function handler(req: NextRequest) {
       duplex: 'half',
     });
 
-    // Get the response body
-    const body = await response.arrayBuffer();
+    // Read the response as text for HTML content
+    const contentType = response.headers.get('content-type') || '';
+    let body;
+    
+    if (contentType.includes('text') || contentType.includes('html') || contentType.includes('json')) {
+      body = await response.text();
+    } else {
+      body = await response.arrayBuffer();
+    }
     
     // Create response with the fetched data
     const responseHeaders = new Headers(response.headers);
@@ -30,6 +40,7 @@ async function handler(req: NextRequest) {
     // Remove Vercel-specific headers that might cause issues
     responseHeaders.delete('x-vercel-id');
     responseHeaders.delete('x-vercel-deployment-url');
+    responseHeaders.delete('x-vercel-cache');
     
     return new NextResponse(body, {
       status: response.status,
@@ -39,7 +50,7 @@ async function handler(req: NextRequest) {
   } catch (error) {
     console.error('Proxy error:', error);
     return NextResponse.json(
-      { error: 'Failed to proxy request' },
+      { error: 'Failed to proxy request', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }
