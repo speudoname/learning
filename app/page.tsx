@@ -36,20 +36,12 @@ export default function Home() {
             You&apos;re successfully authenticated
           </p>
           
-          <div className="flex gap-4 justify-center mb-8">
-            <Link 
-              href="/dashboard"
-              className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-            >
-              Protected Dashboard →
-            </Link>
-            <Link 
-              href="/gateway"
-              className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
-            >
-              Gateway Demo →
-            </Link>
-          </div>
+          <Link 
+            href="/gateway"
+            className="inline-block px-8 py-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-lg font-semibold mb-8"
+          >
+            Access Microservices Gateway →
+          </Link>
           
           <div className="bg-green-50 border border-green-200 rounded-lg p-6 max-w-2xl mx-auto">
             <h2 className="text-lg font-semibold mb-3">What&apos;s Happening:</h2>
