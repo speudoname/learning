@@ -52,7 +52,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'x-forwarded-host',
-            value: isDevelopment ? 'localhost:3000' : 'learning-mvj7wb3s6-levans-projects-84ff839c.vercel.app',
+            value: isDevelopment ? 'localhost:3000' : 'learning-9s0ea1luk-levans-projects-84ff839c.vercel.app',
           },
           {
             key: 'x-forwarded-proto',
@@ -65,7 +65,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'x-forwarded-host',
-            value: isDevelopment ? 'localhost:3000' : 'learning-mvj7wb3s6-levans-projects-84ff839c.vercel.app',
+            value: isDevelopment ? 'localhost:3000' : 'learning-9s0ea1luk-levans-projects-84ff839c.vercel.app',
           },
           {
             key: 'x-forwarded-proto',
