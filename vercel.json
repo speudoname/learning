@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/app1",
+      "destination": "https://learning-app1-2kuscihzg-levans-projects-84ff839c.vercel.app/app1"
+    },
+    {
+      "source": "/app1/:match*",
+      "destination": "https://learning-app1-2kuscihzg-levans-projects-84ff839c.vercel.app/app1/:match*"
+    },
+    {
+      "source": "/app2",
+      "destination": "https://app2-lcqge066f-levans-projects-84ff839c.vercel.app/app2"
+    },
+    {
+      "source": "/app2/:match*",
+      "destination": "https://app2-lcqge066f-levans-projects-84ff839c.vercel.app/app2/:match*"
+    }
+  ]
+}

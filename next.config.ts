@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
+// Use environment variables for production domains
+const APP1_DOMAIN = process.env.APP1_DOMAIN || 'https://learning-app1-2kuscihzg-levans-projects-84ff839c.vercel.app';
+const APP2_DOMAIN = process.env.APP2_DOMAIN || 'https://app2-lcqge066f-levans-projects-84ff839c.vercel.app';
+
 const nextConfig: NextConfig = {
   async rewrites() {
     if (isDevelopment) {
@@ -25,53 +29,23 @@ const nextConfig: NextConfig = {
       ];
     }
     
-    // Production rewrites
+    // Production rewrites using environment variables
     return [
       {
         source: '/app1',
-        destination: 'https://learning-app1-2kuscihzg.vercel.app/app1',
+        destination: `${APP1_DOMAIN}/app1`,
       },
       {
         source: '/app1/:path*',
-        destination: 'https://learning-app1-2kuscihzg.vercel.app/app1/:path*',
+        destination: `${APP1_DOMAIN}/app1/:path*`,
       },
       {
         source: '/app2',
-        destination: 'https://app2-lcqge066f.vercel.app/app2',
+        destination: `${APP2_DOMAIN}/app2`,
       },
       {
         source: '/app2/:path*',
-        destination: 'https://app2-lcqge066f.vercel.app/app2/:path*',
-      },
-    ];
-  },
-  async headers() {
-    return [
-      {
-        source: '/app1/:path*',
-        headers: [
-          {
-            key: 'x-forwarded-host',
-            value: isDevelopment ? 'localhost:3000' : 'learning-9s0ea1luk-levans-projects-84ff839c.vercel.app',
-          },
-          {
-            key: 'x-forwarded-proto',
-            value: isDevelopment ? 'http' : 'https',
-          },
-        ],
-      },
-      {
-        source: '/app2/:path*',
-        headers: [
-          {
-            key: 'x-forwarded-host',
-            value: isDevelopment ? 'localhost:3000' : 'learning-9s0ea1luk-levans-projects-84ff839c.vercel.app',
-          },
-          {
-            key: 'x-forwarded-proto',
-            value: isDevelopment ? 'http' : 'https',
-          },
-        ],
+        destination: `${APP2_DOMAIN}/app2/:path*`,
       },
     ];
   },
