@@ -4,8 +4,9 @@ const APP1_URL = process.env.APP1_URL || 'http://localhost:3001';
 
 async function handler(
   req: NextRequest,
-  { params }: { params: { path: string[] } }
+  context: { params: Promise<{ path: string[] }> }
 ) {
+  const params = await context.params;
   const path = params.path?.join('/') || '';
   const targetUrl = `${APP1_URL}/app1/${path}${req.nextUrl.search}`;
 
