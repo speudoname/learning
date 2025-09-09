@@ -1,17 +1,27 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { clerkMiddleware } from "@clerk/nextjs/server";
 
-export function middleware(request: NextRequest) {
-  console.log("🚦 STEP 1: Middleware intercepted request");
-  console.log("📍 Location: middleware.ts (runs on Vercel's Edge Network)");
-  console.log("🔗 URL requested:", request.url);
-  console.log("🎯 Purpose: Can redirect, rewrite, or add headers BEFORE page loads");
-  
-  // Continue to the requested page
-  return NextResponse.next();
-}
+// This is Clerk's middleware - it runs BEFORE every request
+export default clerkMiddleware();
 
-// Configure which paths the middleware runs on
+// Configuration: Which routes should middleware check?
 export const config = {
-  matcher: '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    // Always run for API routes
+    "/(api|trpc)(.*)",
+  ],
 };
+
+/* 
+What this does:
+1. Runs on EVERY request (except static files)
+2. Checks if user is authenticated
+3. Sets up authentication cookies
+4. Makes auth info available to your pages
+
+The matcher regex means:
+- YES: Run on pages like /, /about, /dashboard
+- NO: Skip images, CSS, fonts, etc.
+- YES: Always run on API routes
+*/
