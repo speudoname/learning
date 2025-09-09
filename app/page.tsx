@@ -16,7 +16,7 @@ export default function Home() {
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 max-w-2xl mx-auto">
             <h2 className="text-lg font-semibold mb-3">How Authentication Works:</h2>
             <ol className="text-left list-decimal list-inside space-y-2 text-sm">
-              <li>Click "Sign In" or "Sign Up" in the header</li>
+              <li>Click &quot;Sign In&quot; or &quot;Sign Up&quot; in the header</li>
               <li>Clerk shows a beautiful modal (no coding needed!)</li>
               <li>Enter your email or use Google/GitHub</li>
               <li>Clerk handles everything (passwords, sessions, cookies)</li>

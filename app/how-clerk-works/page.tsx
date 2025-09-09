@@ -4,7 +4,7 @@ export default function HowClerkWorks() {
       <h1 className="text-3xl font-bold mb-8">🔍 How Clerk ACTUALLY Works</h1>
       
       <div className="bg-blue-50 p-6 rounded-lg mb-6">
-        <h2 className="text-xl font-bold mb-4">The "Simple" Middleware Line:</h2>
+        <h2 className="text-xl font-bold mb-4">The &quot;Simple&quot; Middleware Line:</h2>
         <pre className="bg-gray-900 text-white p-4 rounded overflow-x-auto">
           <code>{`import { clerkMiddleware } from "@clerk/nextjs/server";
 export default clerkMiddleware();`}</code>
@@ -39,7 +39,7 @@ export default clerkMiddleware();`}</code>
       </div>
 
       <div className="bg-green-50 p-6 rounded-lg mb-6">
-        <h2 className="text-xl font-bold mb-4">📦 What's Inside @clerk/nextjs Package:</h2>
+        <h2 className="text-xl font-bold mb-4">📦 What&apos;s Inside @clerk/nextjs Package:</h2>
         
         <div className="space-y-4">
           <div className="bg-white p-4 rounded">
@@ -138,10 +138,10 @@ __cf_bm=security_token_here`}</code>
           
           <p className="mt-4 text-sm font-bold">This cookie is:</p>
           <ul className="mt-2 space-y-1 text-sm">
-            <li>✅ httpOnly (JavaScript can't read it)</li>
+            <li>✅ httpOnly (JavaScript can&apos;t read it)</li>
             <li>✅ Secure (HTTPS only)</li>
             <li>✅ SameSite (CSRF protection)</li>
-            <li>✅ Encrypted (can't be tampered)</li>
+            <li>✅ Encrypted (can&apos;t be tampered)</li>
           </ul>
         </div>
       </div>
