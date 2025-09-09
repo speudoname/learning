@@ -21,11 +21,14 @@ async function handler(
     const response = await fetch(targetUrl, {
       method: req.method,
       headers: headers,
-      body: req.body,
+      body: ['GET', 'HEAD'].includes(req.method) ? undefined : req.body,
       // @ts-expect-error - duplex is needed for streaming
       duplex: 'half',
     });
 
+    // Get the response body
+    const body = await response.arrayBuffer();
+    
     // Create response with the fetched data
     const responseHeaders = new Headers(response.headers);
     
@@ -33,7 +36,7 @@ async function handler(
     responseHeaders.delete('x-vercel-id');
     responseHeaders.delete('x-vercel-deployment-url');
     
-    return new NextResponse(response.body, {
+    return new NextResponse(body, {
       status: response.status,
       statusText: response.statusText,
       headers: responseHeaders,
